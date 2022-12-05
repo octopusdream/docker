@@ -12,13 +12,15 @@ services:
       - /jenkins:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
     deploy:
-        resources:
-            limits:
-              cpus: 2
-              memory: 2048M
-            reservations:
-              cpus: 1
-              memory: 1024M
+      resources:
+        limits:
+          cpus: 2
+          memory: 2048M
+        reservations:
+          cpus: 1
+          memory: 1024M
+    environment:
+        TZ: "Asia/Seoul"
   nexus:
     image: sonatype/nexus3
     privileged: true
@@ -29,3 +31,5 @@ services:
       - 5001:5001
     volumes:
       - /nexus:/nexus-data
+    environment:
+      TZ: "Asia/Seoul"
