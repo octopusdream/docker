@@ -20,7 +20,7 @@ services:
           cpus: 1
           memory: 1024M
     environment:
-        TZ: "Asia/Seoul"
+      TZ: "Asia/Seoul"
   nexus:
     image: sonatype/nexus3
     build: .
