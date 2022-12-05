@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    restart: always
+    container_name: jenkins
+    ports:
+      - 8080:8080
+    volumes:
+      - /jenkins:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+        resources:
+            limits:
+              cpus: 2
+              memory: 2048M
+            reservations:
+              cpus: 1
+              memory: 1024M
+  nexus:
+    image: sonatype/nexus3
+    privileged: true
+    restart: always
+    container_name: nexus
+     ports:
+      - 8081:8081
+      - 5001:5001
+    volumes:
+      - /nexus:/nexus-data
